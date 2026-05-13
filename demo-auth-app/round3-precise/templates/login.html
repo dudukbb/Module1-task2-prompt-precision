@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Round 3 Login</title>
+  <style>
+    :root {
+      --bg-start: #eef6ff;
+      --bg-end: #f9fcff;
+      --card: #ffffff;
+      --text: #0f172a;
+      --muted: #475569;
+      --primary: #0f766e;
+      --primary-strong: #115e59;
+      --ring: rgba(15, 118, 110, 0.18);
+      --border: #dbe7f2;
+      --error-bg: #fef2f2;
+      --error-text: #991b1b;
+      --success-bg: #ecfdf5;
+      --success-text: #166534;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: "Trebuchet MS", "Segoe UI", sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 18% 12%, #d7f3ef 0%, transparent 42%),
+        radial-gradient(circle at 84% 84%, #dcecff 0%, transparent 36%),
+        linear-gradient(165deg, var(--bg-start), var(--bg-end));
+      display: grid;
+      place-items: center;
+      padding: 22px;
+    }
+    .shell {
+      width: 100%;
+      max-width: 940px;
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      border-radius: 24px;
+      overflow: hidden;
+      box-shadow: 0 22px 50px rgba(15, 23, 42, 0.12);
+      background: var(--card);
+    }
+    .intro {
+      padding: 34px;
+      background: linear-gradient(135deg, #0f766e, #0ea5a0);
+      color: #f0fdfa;
+      display: grid;
+      align-content: center;
+      gap: 14px;
+    }
+    .intro h1 { margin: 0; font-size: 34px; line-height: 1.1; }
+    .intro p { margin: 0; opacity: 0.95; max-width: 38ch; }
+    .panel {
+      padding: 34px;
+      display: grid;
+      align-content: center;
+      gap: 14px;
+    }
+    .panel h2 { margin: 0; font-size: 30px; }
+    .panel .subtitle { margin: 0; color: var(--muted); }
+    .flash {
+      border-radius: 12px;
+      padding: 11px 13px;
+      font-size: 14px;
+      border: 1px solid transparent;
+    }
+    .flash.error {
+      background: var(--error-bg);
+      color: var(--error-text);
+      border-color: #fecaca;
+    }
+    .flash.success {
+      background: var(--success-bg);
+      color: var(--success-text);
+      border-color: #bbf7d0;
+    }
+    form { display: grid; gap: 12px; }
+    label { font-size: 13px; font-weight: 700; color: #1e293b; }
+    input {
+      width: 100%;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 11px 13px;
+      font-size: 15px;
+      color: #0f172a;
+      background: #fff;
+    }
+    input:focus {
+      outline: none;
+      border-color: #14b8a6;
+      box-shadow: 0 0 0 4px var(--ring);
+    }
+    button {
+      border: 0;
+      border-radius: 12px;
+      padding: 12px 14px;
+      font-size: 15px;
+      font-weight: 700;
+      color: #ffffff;
+      background: linear-gradient(135deg, var(--primary), #0d9488);
+      cursor: pointer;
+      transition: transform 0.15s ease, filter 0.15s ease;
+    }
+    button:hover { filter: brightness(0.98); transform: translateY(-1px); }
+    .footer {
+      margin: 0;
+      font-size: 14px;
+      color: var(--muted);
+    }
+    a {
+      color: var(--primary-strong);
+      font-weight: 700;
+      text-decoration: none;
+    }
+    @media (max-width: 860px) {
+      .shell { grid-template-columns: 1fr; }
+      .intro { padding: 28px; }
+      .panel { padding: 28px; }
+      .intro h1 { font-size: 30px; }
+      .panel h2 { font-size: 27px; }
+    }
+  </style>
+</head>
+<body>
+  <main class="shell">
+    <section class="intro">
+      <h1>Precision Auth</h1>
+      <p>Round 3 focuses on production-oriented UX: responsive layout, clearer messaging, and polished interaction feedback.</p>
+    </section>
+
+    <section class="panel">
+      <h2>Sign In</h2>
+      <p class="subtitle">Use your email and password to access your dashboard.</p>
+
+      {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+          {% for category, message in messages %}
+            <div class="flash {{ category }}">{{ message }}</div>
+          {% endfor %}
+        {% endif %}
+      {% endwith %}
+
+      <form method="post">
+        <div>
+          <label for="email">Email</label>
+          <input id="email" type="email" name="email" value="{{ email }}" placeholder="name@example.com" autocomplete="email" required>
+        </div>
+        <div>
+          <label for="password">Password</label>
+          <input id="password" type="password" name="password" placeholder="Enter your password" autocomplete="current-password" required>
+        </div>
+        <button type="submit">Sign In</button>
+      </form>
+
+      <p class="footer">Need an account? <a href="{{ url_for('register') }}">Create account</a></p>
+    </section>
+  </main>
+</body>
+</html>

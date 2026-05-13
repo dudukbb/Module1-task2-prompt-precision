@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Round 1 Dashboard</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 30px auto; max-width: 420px; }
+    .error { color: #b00020; }
+    .success { color: #0f7d2b; }
+    button { padding: 8px 12px; }
+  </style>
+</head>
+<body>
+  <h2>Round 1 Dashboard</h2>
+
+  {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+      {% for category, message in messages %}
+        <p class="{{ category }}">{{ message }}</p>
+      {% endfor %}
+    {% endif %}
+  {% endwith %}
+
+  <p>Signed in as <strong>{{ email }}</strong></p>
+  <form method="post" action="{{ url_for('logout') }}">
+    <button type="submit">Logout</button>
+  </form>
+</body>
+</html>

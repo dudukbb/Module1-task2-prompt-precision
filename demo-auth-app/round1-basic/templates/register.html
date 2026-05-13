@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Round 1 Register</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 30px auto; max-width: 380px; }
+    input, button { width: 100%; margin-bottom: 8px; padding: 8px; }
+    .error { color: #b00020; }
+    .success { color: #0f7d2b; }
+  </style>
+</head>
+<body>
+  <h2>Round 1 Basic Register</h2>
+
+  {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+      {% for category, message in messages %}
+        <p class="{{ category }}">{{ message }}</p>
+      {% endfor %}
+    {% endif %}
+  {% endwith %}
+
+  <form method="post">
+    <input type="email" name="email" placeholder="Email" required>
+    <input type="password" name="password" placeholder="Password" required>
+    <button type="submit">Register</button>
+  </form>
+
+  <p>Have an account? <a href="{{ url_for('login') }}">Login</a></p>
+</body>
+</html>

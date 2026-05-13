@@ -1,3 +1,5 @@
+import os
+
 from flask import Flask, flash, redirect, render_template, request, session, url_for
 from werkzeug.security import check_password_hash, generate_password_hash
 
@@ -73,4 +75,5 @@ def logout():
 
 
 if __name__ == "__main__":
-    app.run(debug=True, port=5000)
+    port = int(os.getenv("PORT", "5000"))
+    app.run(debug=True, host="0.0.0.0", port=port)

@@ -142,6 +142,16 @@ The lab applied these precision techniques to improve outcomes:
 
 ---
 
+## Live Demo Links
+
+Access the deployed authentication demos for each prompt-precision round:
+
+* [Round 1 Demo](https://round1-auth-demo.vercel.app/login)
+* [Round 2 Demo](https://round2-auth-demo.vercel.app/login)
+* [Round 3 Demo](https://round3-auth-demo.vercel.app/login)
+
+---
+
 ## Technologies and AI Tools Used
 
 ### Technologies
